@@ -1,0 +1,18 @@
+{
+	"manifest_version": 3,
+	"name": "hip",
+	"version": "0.1.0",
+	"description": "get haxball room ip address",
+	"content_scripts": [
+		{
+			"matches": ["https://*.haxball.com/*"],
+			"js": ["content.js"],
+			"all_frames": true
+		}
+	],
+	"web_accessible_resources": [{
+		"resources": ["injected.js"],
+		"matches": ["https://*.haxball.com/*"]
+	}],
+	"permissions": ["activeTab"]
+}
