@@ -35,12 +35,14 @@ const main = () => {
 	const _RTCIceCandidatePrototype = window.RTCIceCandidate.prototype;
 
 	window.RTCIceCandidate = function (candidateInfo) {
-		const ip = candidateInfo.candidate.split(' ')[4];
+		const instance = new _RTCIceCandidatePrototype.constructor(candidateInfo);
+		const ip = instance.address;
+		const port = instance.port;
 
 		if (null != ip.match(/(?:(?:[0-9]+)\.){3}[0-9]+/)) {
 			waitForElm('div.chatbox-view > div.log.ps').then((chatbox) => {
 				getIPAddressInfo(ip).then(info => {
-					const msg = `IP: ${ip}\nCountry: ${info.flag} (${info.country})\nCity: ${info.city}`;
+					const msg = `IP: ${ip}:${port}\nCountry: ${info.flag} (${info.country})\nCity: ${info.city}`;
 					const p = document.createElement('p');
 					p.innerText = msg;
 					chatbox.append(p);
@@ -49,7 +51,7 @@ const main = () => {
 			});
 		}
 
-		return new _RTCIceCandidatePrototype.constructor(candidateInfo);
+		return instance;
 	};
 
 	window.RTCIceCandidate.prototype = _RTCIceCandidatePrototype;
