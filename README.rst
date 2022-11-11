@@ -1,3 +1,3 @@
 hip
 ===
-get haxball room ip address
+get extra information from haxball rooms, like ip address, city, country, etc...
