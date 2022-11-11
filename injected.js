@@ -22,11 +22,12 @@ const waitForElm = (selector) => {
 };
 
 const getIPAddressInfo = async (ipAddr) => {
-	const resp = await fetch(`https://ipwho.is/${ipAddr}?fields=country,city`);
+	const resp = await fetch(`https://ipwho.is/${ipAddr}?fields=country,city,flag.emoji`);
 	const json = await resp.json();
 	return {
 		country: json.country || 'Unknown',
-		city: json.city || 'Unknown'
+		city: json.city || 'Unknown',
+		flag: json.flag.emoji || '??'
 	};
 }
 
@@ -41,7 +42,7 @@ const main = () => {
 		if (null != ip.match(/(?:(?:[0-9]+)\.){3}[0-9]+/)) {
 			waitForElm('div.chatbox-view > div.log.ps').then((chatbox) => {
 				getIPAddressInfo(ip).then(info => {
-					const msg = `IP: ${ip} Port: ${port} From: ${info.city}, ${info.country}`;
+					const msg = `IP: ${ip} Port: ${port} From: ${info.city}, ${info.flag} ${info.country}`;
 					const p = document.createElement('p');
 					p.innerText = msg;
 					chatbox.append(p);
