@@ -25,8 +25,8 @@ const getIPAddressInfo = async (ipAddr) => {
 	const resp = await fetch(`https://ipwho.is/${ipAddr}?fields=country,city`);
 	const json = await resp.json();
 	return {
-		country: json.country,
-		city: json.city
+		country: json.country || 'Unknown',
+		city: json.city || 'Unknown'
 	};
 }
 
