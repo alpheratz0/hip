@@ -27,7 +27,7 @@ const getIPAddressInfo = async (ipAddr) => {
 	return {
 		country: json.country || 'Unknown',
 		city: json.city || 'Unknown',
-		flag: json.flag.emoji || '??'
+		flag: json.flag?.emoji || '??'
 	};
 }
 
