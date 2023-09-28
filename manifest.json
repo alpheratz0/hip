@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"name": "hip",
 	"version": "0.1.0",
-	"description": "get extra information from haxball rooms",
+	"description": "this extension logs the IP address of every room you join",
 	"content_scripts": [
 		{
 			"matches": ["https://*.haxball.com/*"],
@@ -10,9 +10,11 @@
 			"all_frames": true
 		}
 	],
-	"web_accessible_resources": [{
-		"resources": ["injected.js"],
-		"matches": ["https://*.haxball.com/*"]
-	}],
+	"web_accessible_resources": [
+		{
+			"resources": ["injected.js"],
+			"matches": ["https://*.haxball.com/*"]
+		}
+	],
 	"permissions": ["activeTab"]
 }
